@@ -342,12 +342,12 @@ footer {
 
 #about {
     padding: 75px 15px;
-    text-align: center;
     border-bottom: 1px solid #dcd9d9
 }
 
 #about h2 {
-    color: #374054
+    color: #374054;
+    margin-bottom: 50px
 }
 
 #about p {
