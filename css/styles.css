@@ -567,19 +567,19 @@ footer {
     display: none
 }
 
-#certifcations {
+#certifications {
     padding: 50px 15px;
     border-bottom: 1px solid #dcd9d9;
     text-align: center
 }
 
-#certifcations h2 {
+#certifications h2 {
     color: #374054;
     margin-bottom: 50px;
     text-align: center
 }
 
-.certifcations {
+.certifications {
     position: relative;
     max-width: 900px;
     margin: 0 auto 30px auto;
@@ -588,11 +588,11 @@ footer {
     border-radius: 4px
 }
 
-.certifcations-image {
+.certifications-image {
     float: left
 }
 
-.certifcations-info {
+.certifications-info {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -600,27 +600,27 @@ footer {
     padding: 15px
 }
 
-.certifcations-info h3 {
+.certifications-info h3 {
     font-size: 1.5em;
     font-weight: 300;
     color: #374054;
     margin: 0 0 15px 0
 }
 
-.certifcations-info p {
+.certifications-info p {
     color: #74808a;
     margin: 0 0 15px 0;
     font-size: 0.9em
 }
 
-.no-image .certifcations-info {
+.no-image .certifications-info {
     position: relative;
     margin: 0;
     padding: 30px 15px;
     transform: none
 }
 
-#more-certifcations {
+#more-certifications {
     display: none
 }
 
