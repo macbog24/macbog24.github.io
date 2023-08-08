@@ -580,7 +580,7 @@ footer {
 }
 
 .certifications {
-    position: relative;
+    position: absolute;
     max-width: 900px;
     margin: 0 auto 30px auto;
     overflow: hidden;
@@ -597,7 +597,8 @@ footer {
     top: 50%;
     transform: translateY(-50%);
     margin-left: 300px;
-    padding: 15px
+    padding: 15px;
+    text-align: center
 }
 
 .certifications-info h3 {
