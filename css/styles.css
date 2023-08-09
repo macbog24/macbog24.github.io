@@ -354,7 +354,8 @@ footer {
 
 #about p {
     color: #74808a;
-    margin: 0
+    margin: 0;
+    position: absolute
 }
 
 #experience {
@@ -604,7 +605,9 @@ footer {
     font-size: 1.5em;
     font-weight: 300;
     color: #374054;
-    margin: 0 0 15px 0
+    margin: 0 0 15px 0;
+    top: 50%;
+    transform: translateY(-50%)
 }
 
 .certifications-info p {
