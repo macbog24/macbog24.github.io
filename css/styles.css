@@ -883,7 +883,8 @@ footer {
         text-align: center
     }
     #about p {
-        text-align: left
+        text-align: left;
+        padding: 30px 15px
     }
 }
 
