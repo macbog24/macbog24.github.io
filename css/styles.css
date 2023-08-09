@@ -580,7 +580,7 @@ footer {
 }
 
 .certifications {
-    position: relative;
+    position: absolute;
     max-width: 900px;
     margin: 0 auto 30px auto;
     overflow: hidden;
@@ -614,7 +614,7 @@ footer {
 }
 
 .no-image .certifications-info {
-    position: relative;
+    position: absolute;
     margin: 0;
     padding: 30px 15px;
     transform: none
