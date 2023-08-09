@@ -605,7 +605,7 @@ footer {
     font-weight: 300;
     color: #374054;
     margin: 0 0 15px 0;
-    text-align: center
+    position: relative
 }
 
 .certifications-info p {
