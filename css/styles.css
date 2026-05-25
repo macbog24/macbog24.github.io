@@ -341,7 +341,7 @@ footer {
 }
 
 #about {
-    padding: 75px 15px;
+    padding: 75px 25px;
     border-bottom: 1px solid #dcd9d9;
     text-align: left
 }
@@ -354,7 +354,8 @@ footer {
 
 #about p {
     color: #74808a;
-    margin: 0
+    margin: 0;
+    position: absolute
 }
 
 #experience {
@@ -593,7 +594,7 @@ footer {
 }
 
 .certifications-info {
-    position: absolute;
+    position: relative;
     top: 50%;
     transform: translateY(-50%);
     margin-left: 300px;
@@ -604,7 +605,9 @@ footer {
     font-size: 1.5em;
     font-weight: 300;
     color: #374054;
-    margin: 0 0 15px 0
+    margin: 0 0 15px 0;
+    top: 50%;
+    transform: translateY(-50%)
 }
 
 .certifications-info p {
@@ -880,7 +883,8 @@ footer {
         text-align: center
     }
     #about p {
-        text-align: left
+        text-align: left;
+        padding: 30px 15px
     }
 }
 
