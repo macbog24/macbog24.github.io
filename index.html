@@ -1,31 +1,975 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Under Construction</title>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #add8e6;
-      color: #ffffff;
-      font-family: 'Lato', Arial, sans-serif;
-      text-align: center;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mackenzie Bogiages is an analytics enthusiast focused on solving practical problems and creating meaningful impact in healthcare and life sciences." />
+    <meta name="keywords" content="Mackenzie Bogiages, analytics enthusiast, problem solving, healthcare analytics, UNC Chapel Hill" />
+    <title>Mackenzie Bogiages</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css" />
+    <style>
+      :root {
+        --bg: #f4f1ed;
+        --bg-strong: #e7e0d8;
+        --panel: rgba(255,255,255,0.7);
+        --panel-strong: rgba(255,255,255,0.92);
+        --text: #171b1f;
+        --muted: #53606a;
+        --line: rgba(23, 27, 31, 0.12);
+        --accent: #6d7d6d;
+        --accent-deep: #465a4d;
+        --sand: #d9d1c6;
+        --shadow: 0 22px 50px rgba(21, 25, 29, 0.08);
+      }
 
-    h1 {
-      margin: 0;
-      font-size: clamp(2rem, 6vw, 4rem);
-      line-height: 1.1;
-      letter-spacing: 0.03em;
-    }
-  </style>
-</head>
-<body>
-  <h1>Shhhh..... she's sleeping, come back soon</h1>
-</body>
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.5), rgba(244,241,237,0.95)),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      img { display: block; max-width: 100%; }
+
+      .container {
+        width: min(1140px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(244, 241, 237, 0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(23,27,31,0.08);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 72px;
+      }
+
+      .brand {
+        font-size: 0.82rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--accent-deep);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        flex-wrap: wrap;
+      }
+
+      .nav-links a {
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      .hero {
+        padding: 72px 0 56px;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: center;
+        gap: 42px;
+      }
+
+      .eyebrow {
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent-deep);
+        margin-bottom: 18px;
+      }
+
+      h1, h2, h3 {
+        margin: 0;
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        color: var(--text);
+      }
+
+      h1 {
+        font-size: clamp(4rem, 7vw, 6rem);
+        line-height: 0.9;
+        margin-bottom: 18px;
+      }
+
+      .subtitle {
+        font-size: clamp(1.2rem, 2vw, 2rem);
+        line-height: 1.2;
+        margin-bottom: 20px;
+        color: var(--muted);
+        max-width: 560px;
+      }
+
+      .lead {
+        font-size: 1.02rem;
+        max-width: 640px;
+        color: var(--muted);
+        margin-bottom: 28px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-bottom: 26px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 22px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+
+      .button:hover { transform: translateY(-1px); }
+
+      .button.primary {
+        background: var(--text);
+        color: #f4f1ed;
+        border-color: var(--text);
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: var(--text);
+      }
+
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+      }
+
+      .meta {
+        min-width: 140px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+      }
+
+      .meta strong {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 4px;
+      }
+
+      .meta span {
+        color: var(--muted);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .photo-wrap {
+        position: relative;
+        background: var(--panel-strong);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        padding: 12px;
+        max-width: 480px;
+        width: 100%;
+        margin: 0 auto;
+        justify-self: center;
+      }
+
+      .photo-wrap img {
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+      }
+
+      section {
+        padding: 76px 0;
+      }
+
+      .section-kicker {
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent-deep);
+        margin-bottom: 14px;
+      }
+
+      .section-header {
+        margin-bottom: 24px;
+      }
+
+      .section-header h2 {
+        font-size: clamp(2.8rem, 5vw, 4rem);
+        line-height: 0.96;
+      }
+
+      .story-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 28px;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        padding: 30px;
+        box-shadow: var(--shadow);
+      }
+
+      .panel p {
+        margin: 0 0 18px;
+        color: var(--muted);
+      }
+
+      .panel p:last-child { margin-bottom: 0; }
+
+      .checklist {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 14px;
+      }
+
+      .checklist li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--text);
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 12px;
+      }
+
+      .checklist li:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .checklist li::before {
+        content: "•";
+        color: var(--accent-deep);
+        font-size: 1.6rem;
+        line-height: 1;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 22px;
+      }
+
+      .job {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        padding: 28px 26px;
+      }
+
+      .job-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: baseline;
+        margin-bottom: 12px;
+      }
+
+      .job h3 {
+        font-size: clamp(2rem, 3vw, 2.6rem);
+      }
+
+      .job-role {
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent-deep);
+      }
+
+      .job-date {
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .job p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .value {
+        background: var(--panel-strong);
+        border: 1px solid var(--line);
+        padding: 26px 22px;
+      }
+
+      .value-number {
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent-deep);
+        margin-bottom: 12px;
+      }
+
+      .value h3 {
+        font-size: 2.2rem;
+        margin-bottom: 12px;
+      }
+
+      .value p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .edu-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 22px;
+      }
+
+      .edu-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        padding: 26px 24px;
+      }
+
+      .edu-box--lead {
+        padding: 30px 28px;
+      }
+
+      .edu-box--lead h3 {
+        font-size: clamp(2.2rem, 3vw, 3rem);
+      }
+
+      .edu-box--secondary {
+        background: rgba(255,255,255,0.45);
+        padding: 22px 22px;
+      }
+
+      .edu-box--secondary h3 {
+        font-size: 1.7rem;
+      }
+
+      .school-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+
+      .school-header h3 {
+        margin: 0;
+      }
+
+      .school-logo {
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.55);
+        flex-shrink: 0;
+      }
+
+      .school-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .volunteer-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+      }
+
+      .volunteer-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        padding: 26px 24px;
+      }
+
+      .volunteer-card-top {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .volunteer-card-top h3 {
+        margin: 0;
+        font-size: 2rem;
+      }
+
+      .volunteer-thumb {
+        width: 54px;
+        height: 54px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.7);
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .volunteer-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .interests-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .interest-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        padding: 22px 20px;
+      }
+
+      .interest-box h3 {
+        font-size: 2rem;
+        margin-bottom: 8px;
+      }
+
+      .interest-box p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .edu-box h3 {
+        font-size: 2rem;
+        margin-bottom: 8px;
+      }
+
+      .edu-box .year {
+        display: block;
+        margin-bottom: 14px;
+        color: var(--accent-deep);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+      }
+
+      .edu-box p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .publications {
+        display: grid;
+        gap: 18px;
+      }
+
+      .publication {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        padding: 20px 22px;
+      }
+
+      .publication p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .publication a {
+        color: var(--accent-deep);
+        text-decoration: underline;
+        text-underline-offset: 0.18em;
+      }
+
+      .connect-box {
+        background: var(--panel-strong);
+        border: 1px solid var(--line);
+        padding: 28px 26px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .connect-box h3 {
+        font-size: clamp(2.2rem, 4vw, 3rem);
+      }
+
+      .connect-box p {
+        margin: 8px 0 0;
+        color: var(--muted);
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 14px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.3);
+        color: var(--text);
+        font-size: 0.74rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      footer {
+        padding: 28px 0 55px;
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        border-top: 1px solid var(--line);
+        padding-top: 20px;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .corner-links {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 25;
+      }
+
+      .corner-link {
+        width: 46px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(23,27,31,0.9);
+        color: #f4f1ed;
+        border: 1px solid rgba(23,27,31,0.15);
+        border-radius: 12px;
+        box-shadow: 0 12px 24px rgba(23,27,31,0.12);
+      }
+
+      .shoe-icon {
+        font-size: 1.2rem;
+        line-height: 1;
+        display: inline-block;
+        transform: translateY(-1px);
+      }
+
+      @media (max-width: 860px) {
+        .hero-inner,
+        .story-grid,
+        .edu-grid,
+        .volunteer-grid,
+        .interests-grid,
+        .connect-box {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          flex-direction: column;
+          justify-content: center;
+          padding: 14px 0;
+          gap: 10px;
+        }
+
+        .photo-wrap img {
+          height: 420px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .nav-links {
+          justify-content: center;
+          gap: 14px;
+        }
+
+        .job-top {
+          flex-direction: column;
+        }
+
+        .connect-box {
+          padding: 24px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand">Mackenzie Bogiages</div>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#impact">Impact</a>
+          <a href="#experience">Experience</a>
+          <a href="#volunteer">Volunteer</a>
+          <a href="#education">Education</a>
+          <a href="#connect">Connect</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div>
+            <div class="eyebrow">Healthcare • analytics • problem-solving</div>
+            <h1>Mackenzie Bogiages</h1>
+            <div class="subtitle">Helping people make better decisions with better information.</div>
+            <p class="lead">
+              I’m an analytics enthusiast who enjoys turning complexity into clarity, solving practical problems, and helping others make informed decisions in healthcare and beyond.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="assets/Resume-MLB.pdf" target="_blank" rel="noreferrer" download="Bogiages_Mackenzie_resume.pdf">Download Resume</a>
+              <a class="button secondary" href="#connect">Connect</a>
+            </div>
+            <div class="meta-row">
+              <div class="meta">
+                <strong>Insight</strong>
+                <span>From data</span>
+              </div>
+              <div class="meta">
+                <strong>Analysis</strong>
+                <span>Statistics & insight</span>
+              </div>
+              <div class="meta">
+                <strong>Impact</strong>
+                <span>For people</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="photo-wrap">
+            <img src="images/IMG_6976.jpg" alt="Mackenzie Bogiages portrait" />
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">About</div>
+            <h2>Thoughtful analysis with a practical purpose.</h2>
+          </div>
+
+          <div class="story-grid">
+            <div class="panel">
+              <p>
+                I am someone who enjoys working with information in ways that help people solve real problems. Whether in healthcare, operations, or strategy, I am most energized by work that turns complexity into clarity and helps others move forward with confidence.
+              </p>
+              <p>
+                I care deeply about building practical solutions, understanding the people behind the data, and making work that improves outcomes in ways that are clear, useful, and grounded in reality.
+              </p>
+            </div>
+
+            <div class="panel">
+              <ul class="checklist">
+                <li>Healthcare and life sciences strategy</li>
+                <li>Forecasting and operational analytics</li>
+                <li>Cross-functional problem solving</li>
+                <li>Clear communication and execution</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="impact">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Approach</div>
+            <h2>Clear thinking, practical action.</h2>
+          </div>
+
+          <div class="values-grid">
+            <div class="value">
+              <div class="value-number">01</div>
+              <h3>Frame the problem</h3>
+              <p>Before jumping to answers, I look for the real question behind the data and the decisions it needs to support.</p>
+            </div>
+            <div class="value">
+              <div class="value-number">02</div>
+              <h3>Translate the signal</h3>
+              <p>I translate technical information into language that helps teams move from ambiguity to action.</p>
+            </div>
+            <div class="value">
+              <div class="value-number">03</div>
+              <h3>Support people</h3>
+              <p>Strong analysis is only meaningful when it helps people make better choices and improve outcomes.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Experience</div>
+            <h2>Focused on meaningful work.</h2>
+          </div>
+
+          <div class="timeline">
+            <article class="job">
+              <div class="job-top">
+                <h3>Truveta</h3>
+                <span class="job-date">2022 – Present</span>
+              </div>
+              <div class="job-role">Software Engineer</div>
+              <p>
+                I work with healthcare data to support insights that improve patient understanding, operational decisions, and the broader usefulness of real-world evidence. The work is grounded in translating complex health data into actionable information that helps teams and stakeholders make better decisions.
+              </p>
+            </article>
+
+            <article class="job">
+              <div class="job-top">
+                <h3>IBM</h3>
+                <span class="job-date">2018 – 2022</span>
+              </div>
+              <div class="job-role">Senior Data Scientist | Managing Consultant</div>
+              <p>
+                I supported healthcare and life sciences clients by combining analytics, strategy, and execution to improve operational efficiency and decision-making across complex initiatives.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="volunteer">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Volunteer</div>
+            <h2>Service has always been part of the work.</h2>
+          </div>
+
+          <div class="volunteer-grid">
+            <div class="volunteer-box">
+              <div class="volunteer-card-top">
+                <div class="volunteer-thumb">
+                  <img src="devportfolio-master/images/kcsd.jpeg" alt="King County Search Dogs logo" />
+                </div>
+                <h3>King County Search Dogs</h3>
+              </div>
+              <span class="year">Dog handler</span>
+              <p>
+                I’m a volunteer dog handler with King County Search Dogs, part of King County Search and Rescue in Washington. My dog, Sonic, and I do air scent, and I also support other members of our unit in trailing and HRD efforts.
+              </p>
+            </div>
+
+            <div class="volunteer-box">
+              <div class="volunteer-card-top">
+                <div class="volunteer-thumb">
+                  <img src="devportfolio-master/images/teamfox.jpeg" alt="Team Fox logo" />
+                </div>
+                <h3>Team Fox</h3>
+              </div>
+              <p>
+                I was an active member of Team Fox Boston while living there, and I continue to support the cause of helping people living with Parkinson’s through fundraising and advocacy. My work includes <a href="https://tribute.michaeljfox.org/tribute-page.php?id=3586&np=true" target="_blank" rel="noreferrer" style="color: var(--accent-deep); text-decoration: underline; text-underline-offset: 0.18em;">ongoing fundraising</a> and contributing remotely to the Parkinson’s Precision Medicine Initiative (PPMI).
+              </p>
+            </div>
+
+            <div class="volunteer-box">
+              <div class="volunteer-card-top">
+                <div class="volunteer-thumb">
+                  <img src="devportfolio-master/images/wnpf.jpg" alt="Washington National Park Fund logo" />
+                </div>
+                <h3>Climb for a Cause</h3>
+              </div>
+              <p>
+                Washington’s national parks are some of my favorite places to spend time, and I’m passionate about protecting them. I have spent countless hours exploring Mount Rainier, Olympic, and the North Cascades, and I was proud to support the Washington National Park Fund by summiting Mount Rainier with a group of outdoor enthusiasts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="interests">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Interests</div>
+            <h2>Outside of work, I’m usually moving.</h2>
+          </div>
+
+          <div class="interests-grid">
+            <div class="interest-box">
+              <h3>Outdoors</h3>
+              <p>Running, trail running, biking, hiking, skiing, backpacking, and time outdoors with my dog, especially in the mountains and on the trail.</p>
+            </div>
+            <div class="interest-box">
+              <h3>Service</h3>
+              <p>Search and rescue, giving back to the communities and places that matter most, and being part of work rooted in helping others.</p>
+            </div>
+            <div class="interest-box">
+              <h3>Curiosity</h3>
+              <p>Reading, learning, exploring, and staying engaged with the people, ideas, and causes that matter most.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="education">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Education</div>
+            <h2>Built on a strong analytical foundation.</h2>
+          </div>
+
+          <div class="edu-grid">
+            <div class="edu-box edu-box--lead">
+              <div class="school-header">
+                <div class="school-logo">
+                  <img src="devportfolio-master/images/unc.png" alt="UNC logo" />
+                </div>
+                <h3>University of North Carolina at Chapel Hill</h3>
+              </div>
+              <span class="year">2014 – 2018</span>
+              <p>
+                I studied across statistics, analytics, economics, and language, with a focus on quantitative reasoning, decision-making, and interdisciplinary problem solving. UNC was where I developed the habits of mind that continue to shape how I approach complex problems today.
+              </p>
+            </div>
+
+            <div class="edu-box edu-box--secondary">
+              <div class="school-header">
+                <div class="school-logo">
+                  <img src="devportfolio-master/images/complutense.jpeg" alt="Universidad Complutense de Madrid logo" />
+                </div>
+                <h3>Universidad Complutense de Madrid</h3>
+              </div>
+              <p>
+                Study abroad experience that broadened my perspective and deepened my interest in global learning and cross-cultural engagement.
+              </p>
+            </div>
+
+            <div class="edu-box edu-box--secondary">
+              <div class="school-header">
+                <div class="school-logo">
+                  <img src="devportfolio-master/images/heritagegreece.png" alt="Heritage Greece program logo" />
+                </div>
+                <h3>American College of Greece</h3>
+              </div>
+              <p>
+                Heritage Greece program, combining academic study with a summer experience shaped by history, culture, and international learning.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="publications">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Selected Works</div>
+            <h2>Research and writing.</h2>
+          </div>
+
+          <div class="publications">
+            <div class="publication">
+              <p>
+                1. Smits et al., “<a href="https://doi.org/10.1016/j.vaccine.2023.02.038" target="_blank" rel="noreferrer">Risk of COVID-19 breakthrough infection and hospitalization in individuals with comorbidities</a>,” <em>Vaccine</em>, Volume 41, Issue 15, 2023, Pages 2447–2455.
+              </p>
+            </div>
+
+            <div class="publication">
+              <p>
+                2. Bogiages, “<a href="https://digitalcommons.iwu.edu/uer/vol14/iss1/" target="_blank" rel="noreferrer">Examining the Impact of Education on Diabetes Rates</a>,” <em>Undergraduate Economic Review</em>, Vol. 14: Iss. 1, 2017.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="connect">
+        <div class="container">
+          <div class="connect-box">
+            <div>
+              <div class="section-kicker">Connect</div>
+              <h3>Let’s talk.</h3>
+              <p>I’m interested in opportunities where thoughtful analysis can improve systems, guide better decisions, and support meaningful outcomes.</p>
+            </div>
+            <div class="chip-row">
+              <a class="chip" href="https://www.linkedin.com/in/mackenzielb/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a class="chip" href="https://github.com/macbog24" target="_blank" rel="noreferrer">GitHub</a>
+              <a class="chip" href="https://www.strava.com/athletes/91923101" target="_blank" rel="noreferrer">Strava</a>
+              <a class="chip" href="https://www.goodreads.com/user/show/160648661?ref=nav_profile_l" target="_blank" rel="noreferrer">Goodreads</a>
+              <a class="chip" href="https://www.kcsearchdogs.org/profile/SonicMackenzie/" target="_blank" rel="noreferrer">K9 SAR</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div>© 2026 Mackenzie Bogiages</div>
+        <div>Driven by impact, informed by data.</div>
+      </div>
+    </footer>
+
+    <div class="corner-links" aria-label="External profile links">
+      <a class="corner-link" href="https://www.linkedin.com/in/mackenzielb/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+        <i class="fa fa-linkedin" aria-hidden="true"></i>
+      </a>
+      <a class="corner-link" href="https://github.com/macbog24" target="_blank" rel="noreferrer" aria-label="GitHub">
+        <i class="fa fa-github" aria-hidden="true"></i>
+      </a>
+      <a class="corner-link" href="https://www.strava.com/athletes/91923101" target="_blank" rel="noreferrer" aria-label="Strava">
+        <span class="shoe-icon" aria-hidden="true">👟</span>
+      </a>
+      <a class="corner-link" href="https://www.goodreads.com/user/show/160648661?ref=nav_profile_l" target="_blank" rel="noreferrer" aria-label="Goodreads">
+        <i class="fa fa-book" aria-hidden="true"></i>
+      </a>
+      <a class="corner-link" href="https://www.kcsearchdogs.org/profile/SonicMackenzie/" target="_blank" rel="noreferrer" aria-label="KCSD Search and Rescue">
+        <i class="fa fa-paw" aria-hidden="true"></i>
+      </a>
+    </div>
+  </body>
 </html>
