@@ -170,6 +170,75 @@
         color: var(--text);
       }
 
+      .resume-modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(17, 21, 24, 0.48);
+        z-index: 60;
+        padding: 20px;
+      }
+
+      .resume-modal.is-open {
+        display: flex;
+      }
+
+      .resume-modal-card {
+        width: min(420px, 100%);
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(23, 27, 31, 0.12);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 28px 24px 22px;
+      }
+
+      .resume-modal-card h3 {
+        font-size: clamp(2.2rem, 4vw, 2.8rem);
+        margin-bottom: 8px;
+      }
+
+      .resume-modal-card p {
+        color: var(--muted);
+        margin: 0 0 18px;
+      }
+
+      .resume-input {
+        width: 100%;
+        padding: 12px 14px;
+        font-size: 1rem;
+        border: 1px solid rgba(23, 27, 31, 0.18);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--text);
+        margin-bottom: 12px;
+      }
+
+      .resume-input:focus {
+        outline: 2px solid rgba(109, 125, 109, 0.2);
+        border-color: rgba(109, 125, 109, 0.6);
+      }
+
+      .resume-modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .resume-modal-actions .button {
+        padding: 11px 16px;
+      }
+
+      .resume-error {
+        min-height: 20px;
+        margin-top: 8px;
+        color: #8b2f2f;
+        font-size: 0.8rem;
+        letter-spacing: 0.04em;
+      }
+
       .meta-row {
         display: flex;
         flex-wrap: wrap;
@@ -670,7 +739,7 @@
               I’m an analytics enthusiast who enjoys turning complexity into clarity, solving practical problems, and helping others make informed decisions in healthcare and beyond.
             </p>
             <div class="actions">
-              <a class="button primary" href="assets/Bogiages_Mackenzie_resume.pdf" target="_blank" rel="noreferrer" download="Bogiages_Mackenzie_resume.pdf">Download Resume</a>
+              <a class="button primary" href="assets/Bogiages_Mackenzie_resume.pdf" data-resume-button download="Bogiages_Mackenzie_resume.pdf">Download Resume</a>
               <a class="button secondary" href="#connect">Connect</a>
             </div>
             <div class="meta-row">
@@ -970,5 +1039,83 @@
         <i class="fa fa-paw" aria-hidden="true"></i>
       </a>
     </div>
+
+    <div id="resume-modal" class="resume-modal" aria-hidden="true">
+      <div class="resume-modal-card" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title">
+        <h3 id="resume-modal-title">Resume access</h3>
+        <p>Enter the passcode to download my resume.</p>
+        <input id="resume-password" class="resume-input" type="password" placeholder="Enter passcode" aria-label="Resume passcode" />
+        <div class="resume-error" id="resume-error" aria-live="polite"></div>
+        <div class="resume-modal-actions">
+          <button type="button" class="button secondary" id="resume-cancel">Cancel</button>
+          <button type="button" class="button primary" id="resume-submit">Access</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="resume-config.js"></script>
+    <script>
+      const RESUME_PASSWORD = window.RESUME_PASSWORD || '';
+      const resumeButton = document.querySelector('[data-resume-button]');
+      const resumeModal = document.getElementById('resume-modal');
+      const resumePassword = document.getElementById('resume-password');
+      const resumeError = document.getElementById('resume-error');
+      const resumeSubmit = document.getElementById('resume-submit');
+      const resumeCancel = document.getElementById('resume-cancel');
+
+      function openResumeModal() {
+        resumeModal.classList.add('is-open');
+        resumeModal.setAttribute('aria-hidden', 'false');
+        resumePassword.value = '';
+        resumeError.textContent = '';
+        setTimeout(() => resumePassword.focus(), 50);
+      }
+
+      function closeResumeModal() {
+        resumeModal.classList.remove('is-open');
+        resumeModal.setAttribute('aria-hidden', 'true');
+        resumePassword.value = '';
+        resumeError.textContent = '';
+      }
+
+      function triggerResumeDownload() {
+        const link = document.createElement('a');
+        link.href = 'assets/Bogiages_Mackenzie_resume.pdf';
+        link.download = 'Bogiages_Mackenzie_resume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      }
+
+      resumeButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        openResumeModal();
+      });
+
+      resumeSubmit.addEventListener('click', function () {
+        if (resumePassword.value === RESUME_PASSWORD) {
+          closeResumeModal();
+          triggerResumeDownload();
+        } else {
+          resumeError.textContent = 'Incorrect passcode. Please try again.';
+        }
+      });
+
+      resumeCancel.addEventListener('click', function () {
+        closeResumeModal();
+      });
+
+      resumePassword.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+          resumeSubmit.click();
+        }
+      });
+
+      resumeModal.addEventListener('click', function (event) {
+        if (event.target === resumeModal) {
+          closeResumeModal();
+        }
+      });
+    </script>
   </body>
 </html>
