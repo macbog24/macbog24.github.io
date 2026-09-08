@@ -1053,9 +1053,7 @@
       </div>
     </div>
 
-    <script src="resume-config.js"></script>
     <script>
-      const RESUME_PASSWORD = window.RESUME_PASSWORD || '';
       const resumeButton = document.querySelector('[data-resume-button]');
       const resumeModal = document.getElementById('resume-modal');
       const resumePassword = document.getElementById('resume-password');
@@ -1078,13 +1076,31 @@
         resumeError.textContent = '';
       }
 
-      function triggerResumeDownload() {
-        const link = document.createElement('a');
-        link.href = 'assets/Bogiages_Mackenzie_resume.pdf';
-        link.download = 'Bogiages_Mackenzie_resume.pdf';
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
+      async function triggerResumeDownload() {
+        try {
+          const response = await fetch('/api/resume/download', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: resumePassword.value })
+          });
+
+          if (!response.ok) {
+            throw new Error('Incorrect passcode. Please try again.');
+          }
+
+          const blob = await response.blob();
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'Bogiages_Mackenzie_resume.pdf';
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          URL.revokeObjectURL(url);
+          closeResumeModal();
+        } catch (error) {
+          resumeError.textContent = error.message || 'Unable to download the resume right now.';
+        }
       }
 
       resumeButton.addEventListener('click', function (event) {
@@ -1093,12 +1109,7 @@
       });
 
       resumeSubmit.addEventListener('click', function () {
-        if (resumePassword.value === RESUME_PASSWORD) {
-          closeResumeModal();
-          triggerResumeDownload();
-        } else {
-          resumeError.textContent = 'Incorrect passcode. Please try again.';
-        }
+        triggerResumeDownload();
       });
 
       resumeCancel.addEventListener('click', function () {

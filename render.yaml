@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: mackenzie-resume
+    env: node
+    plan: free
+    buildCommand: npm install --ignore-scripts
+    startCommand: node server.js
+    envVars:
+      - key: RESUME_PASSWORD
+        sync: false
