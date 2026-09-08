@@ -1076,7 +1076,7 @@
         resumeError.textContent = '';
       }
 
-      async function triggerResumeDownload() {
+      async function viewResume() {
         try {
           const response = await fetch('https://mackenzie-resume.onrender.com/api/resume/download', {
             method: 'POST',
@@ -1090,16 +1090,13 @@
 
           const blob = await response.blob();
           const url = URL.createObjectURL(blob);
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = 'Bogiages_Mackenzie_resume.pdf';
-          document.body.appendChild(link);
-          link.click();
-          link.remove();
-          URL.revokeObjectURL(url);
+          const pdfWindow = window.open(url, '_blank');
+          if (!pdfWindow) {
+            throw new Error('Please allow pop-ups to view the resume.');
+          }
           closeResumeModal();
         } catch (error) {
-          resumeError.textContent = error.message || 'Unable to download the resume right now.';
+          resumeError.textContent = error.message || 'Unable to open the resume right now.';
         }
       }
 
@@ -1109,7 +1106,7 @@
       });
 
       resumeSubmit.addEventListener('click', function () {
-        triggerResumeDownload();
+        viewResume();
       });
 
       resumeCancel.addEventListener('click', function () {
