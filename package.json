@@ -2,7 +2,7 @@
   "name": "devportfolio-template",
   "version": "1.2.2",
   "description": "",
-  "main": "js/scripts.js",
+  "main": "server.js",
   "scripts": {
     "watch": "gulp watch",
     "start": "node server.js"

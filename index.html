@@ -1078,7 +1078,7 @@
 
       async function triggerResumeDownload() {
         try {
-          const response = await fetch('/api/resume/download', {
+          const response = await fetch('https://mackenzie-resume.onrender.com/api/resume/download', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ password: resumePassword.value })
