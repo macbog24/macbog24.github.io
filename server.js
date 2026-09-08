@@ -5,8 +5,12 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const RESUME_PASSWORD = process.env.RESUME_PASSWORD || 'Sonic18!';
+const RESUME_PASSWORD = process.env.RESUME_PASSWORD;
 const PDF_PATH = path.join(__dirname, 'assets', 'Bogiages_Mackenzie_resume.pdf');
+
+if (!RESUME_PASSWORD) {
+  throw new Error('RESUME_PASSWORD is not set. Add it to your environment variables before starting the server.');
+}
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
